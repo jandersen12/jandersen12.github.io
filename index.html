@@ -4,112 +4,803 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jordan Andersen — Data Science Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-           background: #f6f8fa; color: #24292f; }
-    header { background: #24292f; color: white; padding: 3rem 2rem; text-align: center; }
-    header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    header p { color: #8b949e; font-size: 1rem; }
-    header a { color: #58a6ff; text-decoration: none; margin: 0 0.5rem; }
-    main { max-width: 960px; margin: 2rem auto; padding: 0 1.5rem; }
-    h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;
-         color: #57606a; border-bottom: 1px solid #d0d7de;
-         padding-bottom: 0.5rem; margin: 2rem 0 1rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.25rem; }
-    .card { background: white; border: 1px solid #d0d7de; border-radius: 8px;
-            padding: 1.25rem; transition: box-shadow 0.2s; }
-    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
-    .card h3 a { color: #0969da; text-decoration: none; }
-    .card h3 a:hover { text-decoration: underline; }
-    .card p { font-size: 0.875rem; color: #57606a; line-height: 1.5; margin-bottom: 0.75rem; }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag { background: #ddf4ff; color: #0969da; font-size: 0.75rem;
-           padding: 0.2rem 0.6rem; border-radius: 20px; }
-    footer { text-align: center; padding: 2rem; color: #57606a; font-size: 0.85rem; }
+    :root {
+      --cream:     #F5F0E4;
+      --charcoal:  #2A2820;
+      --orange:    #C9521F;
+      --mustard:   #D9A020;
+      --teal:      #3E6B62;
+      --light:     #FAF7F0;
+      --mid:       #E8E2D4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── NAV ───────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: var(--charcoal);
+    }
+
+    nav .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav ul a {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--mustard); }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 64px;
+    }
+
+    .hero-left {
+      background: var(--charcoal);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -80px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      border: 40px solid var(--teal);
+      opacity: 0.25;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 60px; left: -40px;
+      width: 140px; height: 140px;
+      background: var(--mustard);
+      opacity: 0.12;
+      transform: rotate(45deg);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mustard);
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--mustard);
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--mid);
+      max-width: 380px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--orange);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border-color: var(--mid);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cream);
+      color: #fff;
+    }
+
+    .hero-right {
+      background: var(--orange);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 3rem 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: 2rem; right: 2rem;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: var(--mustard);
+      opacity: 0.35;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      bottom: 30%; left: 1.5rem;
+      width: 50px; height: 50px;
+      background: var(--charcoal);
+      opacity: 0.2;
+    }
+
+    .hero-stat-strip {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.18);
+      display: flex;
+      justify-content: space-around;
+      padding: 1.2rem 1rem;
+    }
+
+    .hero-stat { text-align: center; }
+    .hero-stat .num {
+      display: block;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: #fff;
+      line-height: 1;
+    }
+    .hero-stat .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .photo-placeholder {
+      width: 260px;
+      height: 340px;
+      background: rgba(0,0,0,0.15);
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 80px;
+    }
+
+    .photo-placeholder svg {
+      width: 60px;
+      height: 60px;
+      opacity: 0.5;
+    }
+
+    .photo-placeholder span {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTIONS SHARED ───────────────────────────────── */
+    section { padding: 6rem 3rem; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--charcoal);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ─────────────────────────────────────────── */
+    #about {
+      background: var(--light);
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-photo-wrap {
+      position: relative;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--mid);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-photo::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: var(--mustard);
+      opacity: 0.3;
+    }
+
+    .about-photo svg {
+      width: 64px; height: 64px;
+      color: var(--charcoal);
+      opacity: 0.3;
+    }
+
+    .about-photo span {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      opacity: 0.4;
+    }
+
+    .accent-box {
+      position: absolute;
+      bottom: -1.5rem; left: -1.5rem;
+      background: var(--teal);
+      width: 80px; height: 80px;
+      z-index: -1;
+    }
+
+    .about-text p {
+      color: #4a4640;
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+    }
+
+    .interests-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .interest-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--cream);
+      border: 1.5px solid var(--mid);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--charcoal);
+    }
+
+    .interest-pill .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* ── PROJECTS ──────────────────────────────────────── */
+    #projects { background: var(--cream); }
+
+    .projects-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--mid);
+    }
+
+    .project-card {
+      background: var(--light);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: background 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-card:hover { background: #fff; }
+
+    .project-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--mid);
+      line-height: 1;
+    }
+
+    .project-card:hover .project-num { color: var(--orange); }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      line-height: 1.3;
+      transition: color 0.2s;
+    }
+
+    .project-card:hover .project-title { color: var(--orange); }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: #6b6560;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      background: var(--mid);
+      color: var(--charcoal);
+    }
+
+    .project-arrow {
+      font-size: 1.2rem;
+      color: var(--mid);
+      align-self: flex-end;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover .project-arrow {
+      color: var(--orange);
+      transform: translate(3px, -3px);
+    }
+
+    /* ── CONTACT ───────────────────────────────────────── */
+    #contact {
+      background: var(--charcoal);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    #contact .section-title { color: var(--cream); }
+
+    #contact .section-label { color: var(--mustard); }
+
+    .contact-tagline {
+      color: var(--mid);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 380px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      text-decoration: none;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--mustard);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .contact-link-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-link-icon.email { background: var(--orange); }
+    .contact-link-icon.linkedin { background: var(--teal); }
+
+    .contact-link-text .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      display: block;
+    }
+
+    .contact-link-text .value {
+      font-size: 0.95rem;
+      color: var(--cream);
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    footer {
+      background: #1e1c16;
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer span {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      opacity: 0.5;
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      #about { grid-template-columns: 1fr; }
+      .about-photo-wrap { max-width: 300px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      #contact { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Jordan Andersen</h1>
-  <p>MIDS @ UC Berkeley · Data Science · Global Impact through Data</p>
-  <p style="margin-top:0.75rem">
-    <a href="https://github.com/jandersen12">GitHub</a> ·
-    <a href="https://www.linkedin.com/in/jordanandersenprofile">LinkedIn</a>
-  </p>
-</header>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">Jordan Andersen</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<main>
-  <h2>Featured Projects</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3><a href="https://jandersen12.github.io/Machine-Learning-Endangered-Languages">
-        Languages at Risk</a></h3>
-      <p>ML models predicting language endangerment using speaker counts, urbanization,
-         and legal status. Gradient boosting and ensemble methods achieved 88% test accuracy.</p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag">Tableau</span>
-        <span class="tag">NLP</span>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Data Science &amp; ML</p>
+      <h1 class="hero-name">Jordan<br/><em>Andersen</em></h1>
+      <p class="hero-tagline">
+        UC Berkeley MIDS student building models, tools, and insights
+        that don't just describe the world — but help change it.
+      </p>
+      <div class="hero-links">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
     </div>
-
-    <div class="card">
-      <h3><a href="https://jandersen12.github.io/mitigating-gender-bias-in-LLMs">
-        Mitigating Gender Bias in LLMs</a></h3>
-      <p>Explored gender bias in ModernBERT and applied three debiasing methods —
-         counterfactual augmentation, debiased embeddings, and nullspace projection.</p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">Transformers</span>
-        <span class="tag">TensorFlow</span>
+    <div class="hero-right">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Add your photo here</span>
+      </div>
+      <div class="hero-stat-strip">
+        <div class="hero-stat">
+          <span class="num">5+</span>
+          <span class="label">Projects</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">4</span>
+          <span class="label">Countries lived</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">88%</span>
+          <span class="label">Best model acc.</span>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3><a href="https://jandersen12.github.io/Met-Objects-Graph-Model">
-        Met Connect</a></h3>
-      <p>Converted the Metropolitan Museum's collection into a Neo4j graph database.
-         Used PageRank and Louvain Modularity to surface curation recommendations.</p>
-      <div class="tags">
-        <span class="tag">Neo4j</span>
-        <span class="tag">Graph Algorithms</span>
-        <span class="tag">Python</span>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-photo-wrap">
+      <div class="about-photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Your photo here</span>
+      </div>
+      <div class="accent-box"></div>
+    </div>
+    <div class="about-text">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">From Latin America<br/>to machine learning</h2>
+      <p>
+        I'm a UC Berkeley MIDS student with a background in international development,
+        where I spent several years working on efforts to end violence against women and
+        children across Latin America. It was there that I saw firsthand how data —
+        collected carefully, analyzed rigorously, and communicated clearly — could move
+        people and drive real decisions.
+      </p>
+      <p>
+        That realization sent me down a path I haven't looked back from: building models,
+        designing tools, and extracting insights that don't just describe the world but
+        help change it. I enjoy figuring out how complex systems work and finding ways to
+        improve processes that generate broad impact and inform decision making.
+      </p>
+      <div class="interests-row">
+        <div class="interest-pill"><div class="dot"></div>Travel &amp; living abroad</div>
+        <div class="interest-pill"><div class="dot"></div>Narrative non-fiction</div>
+        <div class="interest-pill"><div class="dot"></div>Backpacking</div>
+        <div class="interest-pill"><div class="dot"></div>Adventurous eating</div>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <h3><a href="https://jandersen12.github.io/Causal-Experiment-Product-Marketing">
-        Product Personalization Study</a></h3>
-      <p>3×2 factorial experiment testing whether identity-based personalization
-         amplifies the effect of product bundling on purchase intent.</p>
-      <div class="tags">
-        <span class="tag">Causal Inference</span>
-        <span class="tag">Experimental Design</span>
-        <span class="tag">R</span>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="projects-header">
+      <div>
+        <p class="section-label">Work</p>
+        <h2 class="section-title">Featured Projects</h2>
       </div>
+      <a href="https://github.com/jandersen12" class="btn btn-primary" target="_blank">
+        All on GitHub
+      </a>
     </div>
+    <div class="projects-grid">
 
-    <div class="card">
-      <h3><a href="https://jandersen12.github.io/World-Bank-Indicators-Analysis">
-        Gender, Employment & School Enrollment</a></h3>
-      <p>Global EDA uncovering correlations between female primary school enrollment
-         and employment rates using World Bank indicators from 2017–2023.</p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">EDA</span>
-        <span class="tag">World Bank</span>
-      </div>
+      <a class="project-card" href="https://jandersen12.github.io/Machine-Learning-Endangered-Languages" target="_blank">
+        <div class="project-num">01</div>
+        <div class="project-title">Languages at Risk</div>
+        <p class="project-desc">
+          ML models predicting language endangerment using speaker counts, urbanization,
+          and legal status. Gradient boosting and ensemble methods achieved 88% test accuracy
+          across 2,870 languages.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">Tableau</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a class="project-card" href="https://github.com/jandersen12/mitigating-gender-bias-in-LLMs" target="_blank">
+        <div class="project-num">02</div>
+        <div class="project-title">Mitigating Gender Bias in LLMs</div>
+        <p class="project-desc">
+          Explored gender bias in ModernBERT and applied three debiasing methods —
+          counterfactual augmentation, debiased embeddings, and nullspace projection —
+          on an occupation classification task.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Transformers</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">NLP</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a class="project-card" href="https://github.com/jandersen12/Met-Objects-Graph-Model" target="_blank">
+        <div class="project-num">03</div>
+        <div class="project-title">Met Connect</div>
+        <p class="project-desc">
+          Converted the Metropolitan Museum's collection into a Neo4j graph database.
+          Used PageRank and Louvain Modularity to surface curation and exhibition recommendations.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Neo4j</span>
+          <span class="tag">Graph Algorithms</span>
+          <span class="tag">Python</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a class="project-card" href="https://github.com/jandersen12/Causal-Experiment-Product-Marketing" target="_blank">
+        <div class="project-num">04</div>
+        <div class="project-title">Product Personalization Study</div>
+        <p class="project-desc">
+          A 3×2 factorial experiment testing whether identity-based personalization
+          amplifies the effect of product bundling on purchase intent using a
+          simulated e-commerce environment.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Causal Inference</span>
+          <span class="tag">Experimental Design</span>
+          <span class="tag">R</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a class="project-card" href="https://github.com/jandersen12/World-Bank-Indicators-Analysis" target="_blank">
+        <div class="project-num">05</div>
+        <div class="project-title">Gender, Employment &amp; Enrollment</div>
+        <p class="project-desc">
+          Global EDA uncovering correlations between female primary school enrollment
+          and employment rates using World Bank indicators from 2017–2023 across
+          dozens of countries.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">EDA</span>
+          <span class="tag">World Bank</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a class="project-card" href="https://github.com/jandersen12/CNN-Predicting-Diabetic-Retinopathy" target="_blank">
+        <div class="project-num">06</div>
+        <div class="project-title">CNN: Diabetic Retinopathy</div>
+        <p class="project-desc">
+          Convolutional neural network for detecting diabetic retinopathy from retinal
+          images, exploring how deep learning can support earlier clinical diagnosis
+          in under-resourced settings.
+        </p>
+        <div class="project-tags">
+          <span class="tag">CNN</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">Computer Vision</span>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
     </div>
+  </section>
 
-  </div>
-</main>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div>
+      <p class="section-label">Let's connect</p>
+      <h2 class="section-title">Get in<br/>Touch</h2>
+      <p class="contact-tagline">
+        Always open to connecting with people working on interesting problems —
+        whether in data science, global development, or anything in between.
+      </p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:jordanandersen@berkeley.edu">
+        <div class="contact-link-icon email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="contact-link-text">
+          <span class="label">Email</span>
+          <span class="value">jordanandersen@berkeley.edu</span>
+        </div>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/jordanandersenprofile" target="_blank">
+        <div class="contact-link-icon linkedin">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </div>
+        <div class="contact-link-text">
+          <span class="label">LinkedIn</span>
+          <span class="value">jordanandersenprofile</span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-<footer>© 2026 Jordan Andersen</footer>
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Jordan Andersen</span>
+    <div class="footer-dot"></div>
+    <span>UC Berkeley MIDS</span>
+  </footer>
+
 </body>
 </html>
