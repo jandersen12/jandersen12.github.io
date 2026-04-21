@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jordan Andersen — Data Science Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+           background: #f6f8fa; color: #24292f; }
+    header { background: #24292f; color: white; padding: 3rem 2rem; text-align: center; }
+    header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    header p { color: #8b949e; font-size: 1rem; }
+    header a { color: #58a6ff; text-decoration: none; margin: 0 0.5rem; }
+    main { max-width: 960px; margin: 2rem auto; padding: 0 1.5rem; }
+    h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;
+         color: #57606a; border-bottom: 1px solid #d0d7de;
+         padding-bottom: 0.5rem; margin: 2rem 0 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem; }
+    .card { background: white; border: 1px solid #d0d7de; border-radius: 8px;
+            padding: 1.25rem; transition: box-shadow 0.2s; }
+    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .card h3 a { color: #0969da; text-decoration: none; }
+    .card h3 a:hover { text-decoration: underline; }
+    .card p { font-size: 0.875rem; color: #57606a; line-height: 1.5; margin-bottom: 0.75rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag { background: #ddf4ff; color: #0969da; font-size: 0.75rem;
+           padding: 0.2rem 0.6rem; border-radius: 20px; }
+    footer { text-align: center; padding: 2rem; color: #57606a; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Jordan Andersen</h1>
+  <p>MIDS @ UC Berkeley · Data Science · Global Impact through Data</p>
+  <p style="margin-top:0.75rem">
+    <a href="https://github.com/jandersen12">GitHub</a> ·
+    <a href="https://www.linkedin.com/in/jordanandersenprofile">LinkedIn</a>
+  </p>
+</header>
+
+<main>
+  <h2>Featured Projects</h2>
+  <div class="grid">
+
+    <div class="card">
+      <h3><a href="https://jandersen12.github.io/Machine-Learning-Endangered-Languages">
+        Languages at Risk</a></h3>
+      <p>ML models predicting language endangerment using speaker counts, urbanization,
+         and legal status. Gradient boosting and ensemble methods achieved 88% test accuracy.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Tableau</span>
+        <span class="tag">NLP</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><a href="https://jandersen12.github.io/mitigating-gender-bias-in-LLMs">
+        Mitigating Gender Bias in LLMs</a></h3>
+      <p>Explored gender bias in ModernBERT and applied three debiasing methods —
+         counterfactual augmentation, debiased embeddings, and nullspace projection.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Transformers</span>
+        <span class="tag">TensorFlow</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><a href="https://jandersen12.github.io/Met-Objects-Graph-Model">
+        Met Connect</a></h3>
+      <p>Converted the Metropolitan Museum's collection into a Neo4j graph database.
+         Used PageRank and Louvain Modularity to surface curation recommendations.</p>
+      <div class="tags">
+        <span class="tag">Neo4j</span>
+        <span class="tag">Graph Algorithms</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><a href="https://jandersen12.github.io/Causal-Experiment-Product-Marketing">
+        Product Personalization Study</a></h3>
+      <p>3×2 factorial experiment testing whether identity-based personalization
+         amplifies the effect of product bundling on purchase intent.</p>
+      <div class="tags">
+        <span class="tag">Causal Inference</span>
+        <span class="tag">Experimental Design</span>
+        <span class="tag">R</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><a href="https://jandersen12.github.io/World-Bank-Indicators-Analysis">
+        Gender, Employment & School Enrollment</a></h3>
+      <p>Global EDA uncovering correlations between female primary school enrollment
+         and employment rates using World Bank indicators from 2017–2023.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">EDA</span>
+        <span class="tag">World Bank</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>© 2026 Jordan Andersen</footer>
+</body>
+</html>
